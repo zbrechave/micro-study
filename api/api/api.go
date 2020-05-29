@@ -1,13 +1,13 @@
 package main
 
 import (
-	"log"
 	"context"
 	"encoding/json"
 	"github.com/micro/go-micro/v2"
-	hello "github.com/zbrechave/micro-study/srv/proto"
 	api "github.com/micro/go-micro/v2/api/proto"
 	"github.com/micro/go-micro/v2/errors"
+	hello "github.com/zbrechave/micro-study/srv/proto"
+	"log"
 	"strings"
 )
 
