@@ -5,6 +5,7 @@ import (
 	"github.com/micro/go-micro/v2"
 	"github.com/zbrechave/micro-study/srv/handler"
 	hello "github.com/zbrechave/micro-study/srv/proto"
+	w_log "github.com/zbrechave/micro-study/srv/wrapper/log"
 	"google.golang.org/grpc"
 	"log"
 	"time"
@@ -18,6 +19,9 @@ func main() {
 
 	service := micro.NewService(
 		micro.Name("go.micro.srv.greeter"),
+		micro.RegisterTTL(time.Second*30),
+		micro.RegisterInterval(time.Second*15),
+		micro.WrapHandler(w_log.LogWrapper),
 	)
 
 	service.Init()

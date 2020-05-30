@@ -2,6 +2,7 @@ package handler
 
 import (
 	"context"
+	"github.com/micro/go-micro/v2/metadata"
 
 	"github.com/gin-gonic/gin"
 	"github.com/micro/go-micro/v2/client"
@@ -33,7 +34,12 @@ func (s *Say) Hello(c *gin.Context)  {
 
 	name := c.Param("name")
 
-	response, err := sayService.Hello(context.TODO(), &hello.Request{
+	// 原数据信息:
+	ctx := metadata.NewContext(context.Background(), map[string]string{
+		"User": "john",
+	})
+
+	response, err := sayService.Hello(ctx, &hello.Request{
 		Name: name,
 	})
 	if err != nil {
